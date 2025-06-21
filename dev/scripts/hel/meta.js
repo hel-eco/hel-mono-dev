@@ -7,8 +7,6 @@ const { getMonoDevData } = require('../../../dev/mono-helper');
 const isMainJs = webPath => webPath.endsWith('/srv/index.js');
 const { appInfo, appPkgJson, appData } = getMonoDevData(devInfo);
 
-console.log('------>appData', appData);
-
 extractHelMetaJson({
   appInfo,
   enableAssetInnerText: true,

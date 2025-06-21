@@ -1,0 +1,54 @@
+{
+  "name": "mono-comps-proxy",
+  "appGroupName": "mono-comps",
+  "version": "1.0.1",
+  "private": true,
+  "description": "proxy of mono-comps",
+  "author": "fantasticsoul <zhongzhengkai@gmail.com>",
+  "license": "MIT",
+  "types": "./src/entrance/libTypes.ts",
+  "main": "./src/entrance/libTypes.ts",
+  "exports": {
+    ".": {
+      "default": "./src/entrance/libTypes.ts"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hel-eco/hel-mono.git"
+  },
+  "scripts": {
+    "start": "node ../../../dev/scripts/start.js",
+    "build": "node ../../../dev/scripts/build.js",
+    "build2": "npm run clean && node scripts/build.js",
+    "clean": "rm -rf dist",
+    "test": "run-jest"
+  },
+  "dependencies": {
+    "mono-comps": "workspace:*",
+    "hel-lib-proxy": "^4.10.0",
+    "hel-types": "^4.3.6",
+    "hel-iso": "^4.4.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/react": "^12.1.5",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "extends": "tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@mc/*": [
+        "./*"
+      ],
+    },
+    "outDir": "lib-node",
+    "jsx": "react-jsx",
+    "module": "Node16",
+    "moduleResolution": "node16"
+  },
+  "include": [
+    "src"
+  ]
+}

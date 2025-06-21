@@ -1,0 +1,84 @@
+{
+  "name": "hel-demo-lib1",
+  "version": "0.2.2",
+  "description": "hel-mono demo lib 1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hel-eco/hel-mono",
+    "directory": "packages/hel-demo-lib1"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "fancyzhong"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./hel": {
+      "types": "./src/.hel/entrance/libTypes.ts",
+      "import": "./src/.hel/entrance/libTypes.ts"
+    }
+  },
+  "publishConfig": {
+    "dependencies": {},
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./hel": {
+        "types": "./src/.hel/entrance/libTypes.ts",
+        "import": "./src/.hel/entrance/libTypes.ts"
+      }
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "hel_dist",
+    "src",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "start": "node ../../dev/scripts/hel/start.js",
+    "hint": "build:npm 打npm包, build:hel 打hel前端包, build:helbs 打hel前后端包",
+    "build": "pnpm run build:npm && pnpm run build:helbs",
+    "build:hel": "node ../../dev/scripts/hel/build.js",
+    "build:helbs": "node ../../dev/scripts/hel/buildBS.js && node ./scripts/meta",
+    "build:npm": "tsup",
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "is-test": "workspace:*"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "babel-cli": "^6.26.0"
+  },
+  "bundledDependencies": [
+    "is-test"
+  ],
+  "deprecated": false,
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "volta": {
+    "node": "18.12.1",
+    "pnpm": "8.6.8"
+  }
+}

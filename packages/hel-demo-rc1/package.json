@@ -1,0 +1,99 @@
+{
+  "name": "hel-demo-rc1",
+  "version": "0.1.4",
+  "description": "hel-mono demo rect component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hel-eco/hel-mono",
+    "directory": "packages/hel-demo-rc1"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "fancyzhong"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./hel": {
+      "types": "./src/.hel/entrance/libTypes.ts",
+      "import": "./src/.hel/entrance/libTypes.ts"
+    }
+  },
+  "publishConfig": {
+    "dependencies": {
+      "@types/react": ">=16.0.0",
+      "@types/react-dom": ">=16.0.0",
+      "react": ">=16.10.2",
+      "react-dom": ">=16.10.2"
+    },
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./hel": {
+        "types": "./src/.hel/entrance/libTypes.ts",
+        "import": "./src/.hel/entrance/libTypes.ts"
+      }
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "hel_dist",
+    "src",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "start": "node ../../dev/scripts/hel/start.js",
+    "hint": "build:npm 打npm包, build:hel 打hel前端包, build:helbs 打hel前后端包",
+    "build": "npm run build:npm && npm run build:helbs",
+    "build:hel": "node ../../dev/scripts/hel/build.js",
+    "build:helbs": "node ../../dev/scripts/hel/buildBS.js && node ./scripts/meta",
+    "build:npm": "tsup",
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/react": ">=16.0.0",
+    "@types/react-dom": ">=16.0.0",
+    "is-test": "workspace:*",
+    "react": ">=16.10.2",
+    "react-dom": ">=16.10.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-cli": "^6.26.0"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.0.0",
+    "@types/react-dom": ">=16.0.0",
+    "react": ">=16.10.2",
+    "react-dom": ">=16.10.2"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "volta": {
+    "node": "18.12.1",
+    "pnpm": "8.6.8"
+  }
+}

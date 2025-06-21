@@ -1,0 +1,35 @@
+{
+  "name": "hub2",
+  "appGroupName": "hub2",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {},
+  "scripts": {
+    "start": "node ../../dev/scripts/start.js",
+    "build": "node ../../dev/scripts/build.js",
+    "test": "node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  }
+}

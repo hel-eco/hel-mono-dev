@@ -1,0 +1,12 @@
+{
+  "name": "axios-node",
+  "version": "1.0.0",
+  "description": "for test, fork from axios 1.8.4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

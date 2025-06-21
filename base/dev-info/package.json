@@ -1,0 +1,6 @@
+{
+  "name": "dev-info",
+  "version": "0.0.1",
+  "main": "./src/index.js",
+  "description": "hel-mono base/dev-info"
+}

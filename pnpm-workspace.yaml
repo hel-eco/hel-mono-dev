@@ -1,0 +1,7 @@
+prefer-workspace-packages: true
+packages:
+  - 'packages/**'
+  - 'apps/**'
+  - 'base/**'
+  - '.hel/**'
+  - '!**/test/**'

@@ -6,7 +6,7 @@ const { helMonoLog, getPkgjson } = require('../../util');
 const { HOST_NAME } = require('../../consts');
 const { jsonObj2Lines } = require('./util');
 
-function getInjectedDevInfo(deps, /** @type {ICWDAppData} */appData, /** @type {IDevInfo} */devInfo) {
+function getInjectedDevInfo(deps, /** @type {ICWDAppData} */ appData, /** @type {IDevInfo} */ devInfo) {
   const { realAppPkgName } = appData;
   const { appConfs, devHostname } = devInfo;
   const injectedDevInfo = {
@@ -23,16 +23,14 @@ function getInjectedDevInfo(deps, /** @type {ICWDAppData} */appData, /** @type {
   };
 
   assignConf(realAppPkgName);
-  Object.keys(deps).forEach(name => assignConf(name));
+  Object.keys(deps).forEach((name) => assignConf(name));
 
   return injectedDevInfo;
 }
 
-module.exports = function replaceDevInfo(/** @type {ICWDAppData} */appData, /** @type {IDevInfo} */devInfo) {
+module.exports = function replaceDevInfo(/** @type {ICWDAppData} */ appData, /** @type {IDevInfo} */ devInfo) {
   const { helDirPath, isSubMod, realAppPkgJsonPath } = appData;
-  const devInfoFile = isSubMod
-    ? path.join(helDirPath, './configs/devInfo.ts')
-    : path.join(helDirPath, './devInfo.ts');
+  const devInfoFile = isSubMod ? path.join(helDirPath, './configs/devInfo.ts') : path.join(helDirPath, './devInfo.ts');
   helMonoLog(`replace content of file(${devInfoFile})`);
 
   const realAppPackjson = getPkgjson(realAppPkgJsonPath);

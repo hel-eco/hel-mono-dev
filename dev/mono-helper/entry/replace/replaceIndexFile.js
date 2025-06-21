@@ -5,7 +5,7 @@ const { HEL_MICRO_NAME } = require('../../consts');
 const { rewriteFileLine } = require('../../util/rewrite');
 const { helMonoLog } = require('../../util');
 
-module.exports = function replaceIndexFile(/** @type {ICWDAppData} */appData, /** @type {IDevInfo} */devInfo) {
+module.exports = function replaceIndexFile(/** @type {ICWDAppData} */ appData, /** @type {IDevInfo} */ devInfo) {
   const { isForRootHelDir, helDirPath, realAppPkgName } = appData;
   const indexFilePath = path.join(helDirPath, './index.ts');
   const { helMicroName = HEL_MICRO_NAME } = devInfo;

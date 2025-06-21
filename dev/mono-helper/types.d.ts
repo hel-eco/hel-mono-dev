@@ -25,7 +25,6 @@ export interface IPkgInfo {
   proxySrcPath: string;
 }
 
-
 export interface INameData {
   pkgName: string;
   /**
@@ -56,10 +55,26 @@ export interface INameMap {
 }
 
 export interface IMonoNameMap {
-  monoNameMap: Record<BelongToDir, { isSubMod: boolean, nameMap: INameMap }>;
+  monoNameMap: Record<BelongToDir, { isSubMod: boolean; nameMap: INameMap }>;
+  /**
+   * 包名与应用的目录路径映射
+   */
+  pkg2AppDirPath: Dict<string>;
+  /**
+   * 包名与 dependencies 对象映射
+   */
   pkg2Deps: Dict<DepsObj>;
+  /**
+   * 包名与 belongTo 目录映射
+   */
   pkg2BelongTo: Dict<string>;
+  /**
+   * 包名与项目目录映射
+   */
   pkg2Dir: Dict<string>;
+  /**
+   * 包名与带belongTo前缀的目录名映射
+   */
   prefixedDir2Pkg: Dict<string>;
   pkg2Info: Dict<IPkgInfo>;
 }
@@ -94,7 +109,7 @@ export interface ICWDAppData {
    * ```bash
    *                          ⬇︎(apps即belongTo)
    * /path/to/hel-mono/.hel/apps/{dir-name}
-   * 
+   *
    *                     ⬇︎(apps即belongTo)
    * /path/to/hel-mono/{apps}/{dir-name}
    * ```
@@ -110,7 +125,7 @@ export interface ICWDAppData {
    * ```bash
    *                              ⬇︎(hub即appDir)
    * /path/to/hel-mono/.hel/apps/hub
-   * 
+   *
    *                         ⬇︎(hub即appDir)
    * /path/to/hel-mono/apps/hub
    * ```
@@ -185,5 +200,5 @@ export interface IMonoDevData {
    * 应用index入口文件完整路径
    */
   appSrcIndex: string;
-  resolveMonoRoot: (relativePath: string) => string,
+  resolveMonoRoot: (relativePath: string) => string;
 }

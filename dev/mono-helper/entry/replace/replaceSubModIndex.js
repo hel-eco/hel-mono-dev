@@ -5,7 +5,7 @@ const { rewriteFileLine } = require('../../util/rewrite');
 const { helMonoLog } = require('../../util');
 const { HEL_LIB_PROXY_NAME, HEL_MICRO_NAME } = require('../../consts');
 
-module.exports = function replaceSubModIndex(/** @type {ICWDAppData} */appData, /** @type {IDevInfo} */devInfo) {
+module.exports = function replaceSubModIndex(/** @type {ICWDAppData} */ appData, /** @type {IDevInfo} */ devInfo) {
   const { helDirPath } = appData;
   const filePath = path.join(helDirPath, './index.ts');
   const { helMicroName = HEL_MICRO_NAME, helLibProxyName = HEL_LIB_PROXY_NAME } = devInfo;

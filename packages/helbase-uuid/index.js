@@ -3,6 +3,14 @@ const { randomFillSync } = require('crypto');
 const rnds8Pool = new Uint8Array(256);
 let poolPtr = rnds8Pool.length;
 
+// a ??= b 写法在某些旧版 node 里会报错，这里兼容一下
+function doubleq(left, right) {
+  if (left === null || left === undefined) {
+    return right;
+  }
+  return left;
+}
+
 function rng() {
   if (poolPtr > rnds8Pool.length - 16) {
     randomFillSync(rnds8Pool);
@@ -53,8 +61,10 @@ function v7Bytes(rnds, msecs, seq, buf, offset = 0) {
       throw new RangeError(`UUID byte range ${offset}:${offset + 15} is out of buffer bounds`);
     }
   }
-  msecs ??= Date.now();
-  seq ??= ((rnds[6] * 0x7f) << 24) | (rnds[7] << 16) | (rnds[8] << 8) | rnds[9];
+  msecs = doubleq(msecs, Date.now());
+  seq = doubleq(seq, ((rnds[6] * 0x7f) << 24) | (rnds[7] << 16) | (rnds[8] << 8) | rnds[9]);
+  // msecs ??= Date.now();
+  // seq ??= ((rnds[6] * 0x7f) << 24) | (rnds[7] << 16) | (rnds[8] << 8) | rnds[9];
   buf[offset++] = (msecs / 0x10000000000) & 0xff;
   buf[offset++] = (msecs / 0x100000000) & 0xff;
   buf[offset++] = (msecs / 0x1000000) & 0xff;
@@ -75,8 +85,10 @@ function v7Bytes(rnds, msecs, seq, buf, offset = 0) {
 }
 
 function updateV7State(state, now, rnds) {
-  state.msecs ??= -Infinity;
-  state.seq ??= 0;
+  state.msecs = doubleq(state.msecs, -Infinity);
+  state.seq = doubleq(state.seq, 0);
+  // state.msecs ??= -Infinity;
+  // state.seq ??= 0;
   if (now > state.msecs) {
     state.seq = (rnds[6] << 23) | (rnds[7] << 16) | (rnds[8] << 8) | rnds[9];
     state.msecs = now;

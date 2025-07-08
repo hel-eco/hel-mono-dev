@@ -1,7 +1,7 @@
 const path = require('path');
 const { createLibSubApp } = require('hel-dev-utils');
 const { getAppAlias, getCWDAppData, getMonoAppDepData, getMonoSubModSrc, helMonoLog, getCWD } = require('../util');
-const { isHelMode, isHelStart } = require('../util/is');
+const { isHelMode, isHelStart, isHelAllBuild } = require('../util/is');
 
 let cachedResult = null;
 
@@ -45,19 +45,28 @@ exports.getMonoDevData = function (/** @type {import('hel-mono-types').IMonoDevI
     babelLoaderInclude.push(appSrc);
   }
 
-  // start xx:proxy 或 start xx:hel 模式启动
-  const isProxyMode = appData.isForRootHelDir || isHelMode();
-  const shouldGetAllDep = !isProxyMode;
+  let isMicroBuild;
+  let shouldGetAllDep;
+  // 设定了 HEL_ALL_BUILD=1，表示走整体构建模式
+  if (isHelAllBuild()) {
+    isMicroBuild = false;
+    shouldGetAllDep = true;
+  } else {
+    // start xx:proxy 或 start xx:hel 模式启动
+    isMicroBuild = appData.isForRootHelDir || isHelMode();
+    // hel 模式启动或构建，只需要获取直接依赖即可，反之则需要获取所有依赖
+    shouldGetAllDep = !isMicroBuild;
+  }
 
   const { pkgNames, prefixedDir2Pkg, depInfos, pkg2Info } = getMonoAppDepData(appSrc, devInfo, shouldGetAllDep);
-  helMonoLog(`isProxyMode=${isProxyMode}`);
+  helMonoLog(`isMicroBuild=${isMicroBuild}`);
   helMonoLog('dep pack names', pkgNames);
 
   // 支持宿主和其他子模块 @/**/*, @xx/**/* 等能够正常工作
   const appAlias = getAppAlias(appSrc, devInfo, prefixedDir2Pkg);
   const pureAlias = Object.assign({}, appAlias);
 
-  if (!isProxyMode) {
+  if (!isMicroBuild) {
     depInfos.forEach((info) => {
       const { pkgName, belongTo, dirName } = info;
       const subModSrcPath = getMonoSubModSrc(belongTo, dirName);

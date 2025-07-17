@@ -67,7 +67,7 @@
     "file-loader": "^6.2.0",
     "fs-extra": "^11.2.0",
     "hel-dev-utils": "^5.2.6",
-    "hel-mono-types": "^1.1.1",
+    "hel-mono-types": "^1.1.2",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.3",
     "identity-obj-proxy": "3.0.0",

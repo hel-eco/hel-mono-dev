@@ -1,4 +1,4 @@
 const devInfo = require('dev-info');
-const { buildMonoApp } = require('../mono-helper');
+const { executeBuild } = require('../mono-helper');
 
-buildMonoApp(devInfo);
+executeBuild(devInfo);

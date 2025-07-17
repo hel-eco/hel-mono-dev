@@ -1,6 +1,6 @@
 {
   "name": "hel-demo-lib1",
-  "version": "0.2.3-w1-b0",
+  "version": "0.2.6",
   "description": "hel-mono demo lib 1",
   "repository": {
     "type": "git",
@@ -11,6 +11,9 @@
   "author": {
     "name": "fancyzhong"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./src/index.ts"
@@ -34,9 +37,6 @@
       }
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "hel_dist",

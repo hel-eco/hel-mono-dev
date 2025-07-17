@@ -1,19 +1,44 @@
 const path = require('path');
+const fs = require('fs');
 const { createLibSubApp } = require('hel-dev-utils');
+const { VER } = require('../consts');
 const { getAppAlias, getCWDAppData, getMonoAppDepData, getMonoSubModSrc, helMonoLog, getCWD } = require('../util');
 const { isHelMode, isHelStart, isHelAllBuild } = require('../util/is');
 
 let cachedResult = null;
 
+function getExtIndexData(appSrcDirPath, indexName, ext) {
+  const fullPath = path.join(appSrcDirPath, `${indexName}.${ext}`);
+  return { fullPath, isExist: fs.existsSync(fullPath) };
+}
+
 function getAppSrcIndex(/** @type {import('../types').ICWDAppData} */ appData) {
-  let srcAppIndex = '';
-  if (appData.isForRootHelDir) {
-    srcAppIndex = 'index.ts';
+  let indexName = '';
+  const { isForRootHelDir, appSrcDirPath } = appData;
+  if (isForRootHelDir || isHelAllBuild()) {
+    indexName = 'index';
   } else {
-    srcAppIndex = isHelMode() ? '.hel/index.ts' : 'index.tsx';
+    indexName = isHelMode() ? '.hel/index' : 'index';
   }
 
-  return path.join(appData.appSrcDirPath, srcAppIndex);
+  const exts = ['js', 'jsx', 'ts', 'tsx'];
+  const indexPaths = [];
+  let result = null;
+  for (let i = 0; i < exts.length; i++) {
+    const ext = exts[i];
+    const data = getExtIndexData(appSrcDirPath, indexName, ext);
+    indexPaths.push(data.fullPath);
+    if (data.isExist) {
+      result = data;
+      break;
+    }
+  }
+
+  if (!result) {
+    throw new Error(`Can not find index file in this paths (${indexPaths.join(',')})`);
+  }
+
+  return result.fullPath;
 }
 
 /**
@@ -31,7 +56,7 @@ exports.getMonoDevData = function (/** @type {import('hel-mono-types').IMonoDevI
   }
 
   const start = Date.now();
-  helMonoLog(`prepare hel dev data for ${rawAppSrc}`);
+  helMonoLog(`(ver:${VER}) prepare hel dev data for ${rawAppSrc}`);
   let appSrc = rawAppSrc;
   const appData = getCWDAppData(devInfo);
 

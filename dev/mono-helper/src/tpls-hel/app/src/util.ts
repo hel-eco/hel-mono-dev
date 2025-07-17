@@ -1,14 +1,39 @@
 /**
  * 辅助工具函数
  */
-import isTestFn from 'is-test';
 import { DEV_INFO } from './devInfo';
 import { APP_GROUP_NAME } from './subApp';
 
 type HelDep = { appName: string; appGroupName: string; packName: string };
 
+// deployEnv may replaced by build script
+const deployEnv = 'prod';
+
+function getWindow() {
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+  return null;
+}
+
 export function monoLog(...args: any[]) {
   console.log(`[hel-mono] `, ...args);
+}
+
+export function getDevKey(modName: string) {
+  return `dev:${modName}`;
+}
+
+export function getStorageValue(key: string) {
+  const windowVar = getWindow();
+  if (windowVar) {
+    return windowVar.localStorage.getItem(key) || '';
+  }
+  return '';
+}
+
+export function getDeployEnv() {
+  return deployEnv;
 }
 
 /**
@@ -24,7 +49,7 @@ export function getHelDeps() {
 
     const { appNames = { test: '', prod: '' }, appGroupName = '' } = helConf;
     if (appGroupName) {
-      const helModName = isTestFn(APP_GROUP_NAME) ? appNames.test : appNames.prod || appGroupName;
+      const helModName = appNames[deployEnv] || appGroupName;
       helDeps.push({ appName: helModName, appGroupName, packName });
     }
   });

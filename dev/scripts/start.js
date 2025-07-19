@@ -50,13 +50,13 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
  */
 function getPort() {
   const cwd = process.cwd();
-  const spilter = cwd.startsWith('/') ? '/' : '\\';
-  const list = cwd.split(spilter);
+  const delimiter = cwd.startsWith('/') ? '/' : '\\';
+  const list = cwd.split(delimiter);
   const appDirName = list[list.length - 1];
   const { pkgName } = monoUtil.getNameData(appDirName, devInfo);
   const conf = devInfo.appConfs[pkgName] || {};
-  console.log(conf);
-  return conf.port || parseInt(process.env.PORT, 10) || 3000;
+  const port = conf.port || monoUtil.getPort(devInfo);
+  return parseInt(process.env.PORT, 10) || port || 3000;
 }
 
 // Tools like Cloud9 rely on this.

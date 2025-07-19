@@ -25,6 +25,10 @@ module.exports = {
     'hel-demo-lib1': {
       alias: '@h',
     },
+    '@hel-demo/lib1': {
+      alias: '@h2',
+      port: 3101,
+    },
   },
   appExternals: {
     react: 'React',

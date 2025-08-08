@@ -1,17 +1,19 @@
 {
-  "name": "@hel-demo/lib2",
-  "private": false,
-  "version": "0.2.0",
-  "description": "hel-mono scoped demo lib 2",
+  "name": "hel-hello",
+  "version": "1.0.1",
+  "description": "hel-mono hel-hello lib",
   "repository": {
     "type": "git",
     "url": "https://github.com/hel-eco/hel-mono",
-    "directory": "packages/scope-hel-demo-lib2"
+    "directory": "packages/hel-demo-lib1"
   },
   "license": "MIT",
   "author": {
     "name": "fancyzhong"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./src/index.ts"
@@ -35,9 +37,6 @@
       }
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "hel_dist",
@@ -47,17 +46,15 @@
   ],
   "scripts": {
     "start": "node ../../dev/scripts/hel/start.js",
-    "init": "node ../../dev/root-scripts/executeStart .init",
     "hint": "build:npm 打npm包, build:hel 打hel前端包, build:helbs 打hel前后端包",
     "build": "pnpm run build:npm && pnpm run build:helbs",
-    "build:hel": "node ../../dev/scripts/hel/build",
-    "build:helbs": "node ../../dev/scripts/hel/buildBS && node ../../dev/scripts/hel/meta",
+    "build:hel": "node ../../dev/scripts/hel/build.js",
+    "build:helbs": "node ../../dev/scripts/hel/buildBS.js && node ./scripts/meta",
     "build:npm": "tsup",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
     "babel-cli": "^6.26.0"

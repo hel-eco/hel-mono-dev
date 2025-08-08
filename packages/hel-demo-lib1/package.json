@@ -1,6 +1,6 @@
 {
   "name": "hel-demo-lib1",
-  "version": "0.2.6",
+  "version": "1.0.2",
   "description": "hel-mono demo lib 1",
   "repository": {
     "type": "git",
@@ -54,14 +54,11 @@
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "is-test": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
     "babel-cli": "^6.26.0"
   },
-  "bundledDependencies": ["is-test"],
   "deprecated": false,
   "browserslist": {
     "production": [

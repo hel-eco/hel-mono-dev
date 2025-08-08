@@ -29,6 +29,9 @@ module.exports = {
       alias: '@h2',
       port: 3101,
     },
+    'hel-hello': {
+      port: 3102,
+    },
   },
   appExternals: {
     react: 'React',

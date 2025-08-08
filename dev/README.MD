@@ -6,10 +6,6 @@
 
 `root-scripts` 是 hel-mono 根目录 `package.json` 运行各种 npm 命令需要的脚本
 
-`tpl` 是 hel-mono 需要注入 hel 逻辑的模板目录
-
-`base` 是 `root-scripts` 和 `config`, `public`, `scripts` 目录公共复用的逻辑
-
 `doc` 是记录一些关键问题的文档目录
 
 `mono-helper` 大仓助手，所有核心逻辑都在其中，将来会抽为独立的npm包

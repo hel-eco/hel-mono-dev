@@ -1,6 +1,6 @@
 {
   "name": "hel-demo-lib1",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "hel-mono demo lib 1",
   "repository": {
     "type": "git",
@@ -8,14 +8,10 @@
     "directory": "packages/hel-demo-lib1"
   },
   "license": "MIT",
-  "author": {
-    "name": "fancyzhong"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./src/index.ts",
   "exports": {
     ".": {
+      "types": "./src/index.ts",
       "import": "./src/index.ts"
     },
     "./hel": {
@@ -24,7 +20,10 @@
     }
   },
   "publishConfig": {
-    "dependencies": {},
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "unpkg": "./dist/index.js",
     "exports": {
       ".": {
         "types": "./dist/index.d.ts",
@@ -45,14 +44,24 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "start": "node ../../dev/scripts/hel/start.js",
-    "hint": "build:npm 打npm包, build:hel 打hel前端包, build:helbs 打hel前后端包",
-    "build": "pnpm run build:npm && pnpm run build:helbs",
+    "start": "node ../../dev/root-scripts/executeStart",
+    "start:raw": "node ../../dev/scripts/start.js",
+    "start:hel": "node ../../dev/scripts/hel/start.js",
+    "start:for": "node ../../dev/scripts/hel/startFor",
+    "start:all": "node ../../dev/scripts/hel/startAll",
+    "hint": "node ../../dev/scripts/hel/hint.js",
+    "build": "pnpm run build:npm",
     "build:hel": "node ../../dev/scripts/hel/build.js",
-    "build:helbs": "node ../../dev/scripts/hel/buildBS.js && node ./scripts/meta",
+    "build:meta": "node ../../dev/scripts/hel/meta",
+    "build:helm": "cross-env-shell \"pnpm run build:hel && pnpm run build:meta\"",
+    "build:hels": "node ../../dev/scripts/hel/buildS",
+    "build:helbs": "node ../../dev/scripts/hel/buildBS",
+    "build:nbs": "pnpm run build:npm && pnpm run build:helbs",
+    "build:nbsm": "cross-env-shell \"pnpm run build:nbs && pnpm run build:meta\"",
     "build:npm": "tsup",
-    "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "tsc --project ./tsconfig.build.json && tsc-alias -p ./tsconfig.json ",
+    "test": "node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js",
+    "test:once": "cross-env ONCE=1 node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js"
   },
   "dependencies": {},
   "devDependencies": {

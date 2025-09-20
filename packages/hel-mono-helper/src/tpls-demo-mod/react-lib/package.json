@@ -1,0 +1,97 @@
+{
+  "name": "mono-comps",
+  "version": "0.0.1",
+  "description": "hel-mono demo react comps",
+  "hel": {},
+  "license": "MIT",
+  "author": {
+    "name": "fantasticsoul"
+  },
+  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./index.css": "./dist/index.css",
+    "./hel": {
+      "types": "./src/.hel/entrance/libTypes.ts",
+      "import": "./src/.hel/entrance/libTypes.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./index.css": "./dist/index.css",
+      "./hel": {
+        "types": "./src/.hel/entrance/libTypes.ts",
+        "import": "./src/.hel/entrance/libTypes.ts"
+      }
+    }
+  },
+  "dependencies": {
+    "hel-mono-runtime-helper": "^1.1.2"
+  },
+  "devDependencies": {
+    "esbuild-plugin-module-css": "^0.1.1",
+    "hash-css-selector": "^1.1.0",
+    "postcss": "^8.4.4",
+    "postcss-modules": "^6.0.1"
+  },
+  "scripts": {
+    "start": "node ../../dev/root-scripts/executeStart",
+    "start:raw": "node ../../dev/scripts/hel/start.js",
+    "start:hel": "node ../../dev/scripts/hel/start.js",
+    "start:all": "node ../../dev/scripts/hel/startAll.js",
+    "start:for": "node ../../dev/scripts/hel/startFor",
+    "build": "pnpm run build:npm",
+    "build:hel": "node ../../dev/scripts/hel/build.js",
+    "build:all": "node ../../dev/scripts/hel/buildAll.js",
+    "build:npm": "tsup",
+    "build:nb": "pnpm run build:npm && pnpm run build:hel",
+    "build:meta": "node ../../dev/scripts/hel/meta",
+    "build:nbm": "cross-env-shell \"pnpm run build:nb && pnpm run build:meta\"",
+    "test": "node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js",
+    "test:once": "cross-env ONCE=1 node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "volta": {
+    "node": "18.12.1",
+    "pnpm": "8.6.8"
+  },
+  "files": [
+    "dist",
+    "hel_dist",
+    "src",
+    "README.md",
+    "tsconfig.json"
+  ]
+}

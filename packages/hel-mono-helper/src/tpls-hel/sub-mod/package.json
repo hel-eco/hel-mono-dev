@@ -1,0 +1,40 @@
+{
+  "name": "proxy-app-name",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/entrance/libTypes.ts",
+  "scripts": {
+    "build": "node ../../../dev/scripts/hel/build.js",
+    "start": "node ../../../dev/scripts/hel/start.js"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "hel-mono-runtime-helper": "^1.1.2"
+  },
+  "volta": {
+    "node": "18.12.1",
+    "pnpm": "8.6.8"
+  }
+}

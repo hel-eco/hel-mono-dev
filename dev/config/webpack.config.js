@@ -27,8 +27,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 
-const { getMonoDevData } = require('../mono-helper');
-const devInfo = require('dev-info');
+const { getMonoDevData } = require('hel-mono-helper');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -81,8 +80,8 @@ const hasJsxRuntime = (() => {
   }
 })();
 
-// [Hel] 获取 hel-mono 开发或构建相关需要的数据
-const { babelLoaderInclude, appAlias, appExternals } = getMonoDevData(devInfo, paths.appSrc);
+// [HEL_MARK] 获取 hel-mono 开发或构建相关需要的数据
+const { babelLoaderInclude, appAlias, appExternals, appTsConfigPaths } = getMonoDevData(paths.appSrc);
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -99,7 +98,6 @@ module.exports = function (webpackEnv) {
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
-
   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
 
   // common function to get style loaders
@@ -673,6 +671,9 @@ module.exports = function (webpackEnv) {
               noEmit: true,
               incremental: true,
               tsBuildInfoFile: paths.appTsBuildInfoFile,
+              // [HEL_MARK] 注入计算好的 appTsConfigPaths，避免子模块依赖存在别名路径配置时报错：
+              // Cannot find module '@xx/yy/...' or its corresponding type declaration.
+              paths: appTsConfigPaths,
             },
           },
           context: paths.appPath,

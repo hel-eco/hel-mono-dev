@@ -1,5 +1,5 @@
-export {
-  hello,
-  delay,
-  helloAsync,
-} from './utils';
+import * as lib from './export';
+
+export * from './export';
+
+export default lib;

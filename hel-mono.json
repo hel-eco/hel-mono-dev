@@ -1,0 +1,54 @@
+{
+  "mods": {
+    "@hel-demo/lib1": {
+      "port": 3100
+    },
+    "@hel-demo/lib2": {
+      "port": 3101
+    },
+    "@helbase/uuid": {
+      "port": 3102
+    },
+    "axios-node": {
+      "port": 3103
+    },
+    "hel-demo-lib1": {
+      "port": 3104
+    },
+    "hel-demo-rc1": {
+      "alias": "@mc",
+      "port": 3105
+    },
+    "hel-hello": {
+      "port": 3106
+    },
+    "hel-mono-helper": {
+      "port": 3107
+    },
+    "hub": {
+      "alias": "@",
+      "port": 3000
+    },
+    "hub2": {
+      "port": 3001
+    },
+    "mono-comps": {
+      "port": 3108
+    },
+    "mono-comps-in-one": {
+      "port": 3109
+    },
+    "mono-comps-in-one-v2": {
+      "alias": "@mc",
+      "port": 3110
+    },
+    "mono-comps-in-one-v2-back": {
+      "alias": "@",
+      "port": 3111
+    },
+    "tsconfig": {
+      "alias": "@",
+      "port": 3112
+    }
+  }
+}

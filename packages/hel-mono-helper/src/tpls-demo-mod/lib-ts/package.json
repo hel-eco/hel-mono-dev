@@ -1,0 +1,83 @@
+{
+  "name": "mono-libs",
+  "version": "0.0.1",
+  "description": "hel-mono demo libs",
+  "hel": {},
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./hel": {
+      "types": "./src/.hel/entrance/libTypes.ts",
+      "import": "./src/.hel/entrance/libTypes.ts"
+    }
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./hel": {
+        "types": "./src/.hel/entrance/libTypes.ts",
+        "import": "./src/.hel/entrance/libTypes.ts"
+      }
+    }
+  },
+  "dependencies": {
+    "hel-mono-runtime-helper": "^1.1.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "babel-cli": "^6.26.0"
+  },
+  "scripts": {
+    "start": "node ../../dev/root-scripts/executeStart",
+    "start:raw": "node ../../dev/scripts/start",
+    "start:hel": "node ../../dev/scripts/hel/start",
+    "start:for": "node ../../dev/scripts/hel/startFor",
+    "hint": "node ../../dev/scripts/hel/hint",
+    "build": "pnpm run build:npm",
+    "build:hel": "node ../../dev/scripts/hel/build",
+    "build:meta": "node ../../dev/scripts/hel/meta",
+    "build:helm": "cross-env-shell \"pnpm run build:hel && pnpm run build:meta\"",
+    "build:hels": "node ../../dev/scripts/hel/buildS",
+    "build:helbs": "node ../../dev/scripts/hel/buildBS",
+    "build:nbs": "pnpm run build:npm && pnpm run build:helbs",
+    "build:nbsm": "cross-env-shell \"pnpm run build:nbs && pnpm run build:meta\"",
+    "build:npm": "tsup",
+    "tsc": "tsc --project ./tsconfig.build.json && tsc-alias -p ./tsconfig.json ",
+    "test": "node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js",
+    "test:once": "cross-env ONCE=1 node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "volta": {
+    "node": "18.12.1",
+    "pnpm": "8.6.8"
+  },
+  "deprecated": false,
+  "files": [
+    "dist",
+    "hel_dist",
+    "src",
+    "README.md",
+    "tsconfig.json"
+  ]
+}

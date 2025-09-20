@@ -1,10 +1,9 @@
-// [Hel]
-const devInfo = require('dev-info');
-const { getMonoDevData } = require('../../mono-helper');
+// [HEL_MARK]
+const { getMonoDevData } = require('hel-mono-helper');
 const rootDir = process.cwd(); // app 目录路径
 const appSrc = `${rootDir}/src`;
 
-const { jestAlias } = getMonoDevData(devInfo, appSrc);
+const { jestAlias } = getMonoDevData(appSrc);
 
 const jestConfig = {
   roots: [
@@ -61,7 +60,7 @@ const jestConfig = {
 
 const { testMatch } = process.env;
 if (testMatch) {
-  console.log('------ found cutomized testMatch, start compute ------');
+  console.log('------ found customized testMatch, start compute ------');
   let prefixedTestMatch = testMatch;
   if (!testMatch.startsWith('<rootDir>')) {
     prefixedTestMatch = `${rootDir}/src/**${testMatch.startsWith('/') ? testMatch : `/${testMatch}`}`;
@@ -78,10 +77,12 @@ if (testMatch) {
     console.log(`computed collectCoverageFrom: ${JSON.stringify(jestConfig.collectCoverageFrom)}`);
   }
 } else {
-  console.log('开始载入jest配置文件，如果是本地执行，想缩小单测范围，可加上testMatch前缀执行，形如');
   // 执行类似命令，缩小测试范围
   // testMatch='*.test.{ts,tsx}' pnpm --filter hub run test
-  console.log('testMatch=\'pages/__tests__/*.{ts,tsx}\' npm run test');
+  // testMatch='*.test.{ts,tsx}' pnpm start hub:test
+  const demoCmd = 'testMatch=\'pages/__tests__/*.{ts,tsx}\' pnpm start xx:test';
+  console.log(`开始载入jest配置文件，如果是本地执行，想缩小单测范围，可加上testMatch前缀执行，形如: ${demoCmd}`);
+  console.log('current testMath:', jestConfig.testMatch);
 }
 
 module.exports = jestConfig;

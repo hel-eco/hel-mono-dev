@@ -1,4 +1,3 @@
-const devInfo = require('dev-info');
-const { executeStart } = require('../mono-helper');
+const { executeStart } = require('hel-mono-helper');
 
-executeStart(devInfo);
+executeStart();

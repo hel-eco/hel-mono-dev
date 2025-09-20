@@ -32,8 +32,7 @@ const paths = require('../config/paths');
 const configFactory = require('../config/webpack.config');
 const createDevServerConfig = require('../config/webpackDevServer.config');
 const getClientEnvironment = require('../config/env');
-const devInfo = require('dev-info');
-const { monoUtil } = require('../mono-helper');
+const { monoUtil } = require('hel-mono-helper');
 const react = require(require.resolve('react', { paths: [paths.appPath] }));
 
 const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
@@ -49,13 +48,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
  * [HEL_MARK] 支持根目录和子目录启动应用都能正确获取端口，故写在此处
  */
 function getPort() {
-  const cwd = process.cwd();
-  const delimiter = cwd.startsWith('/') ? '/' : '\\';
-  const list = cwd.split(delimiter);
-  const appDirName = list[list.length - 1];
-  const { pkgName } = monoUtil.getNameData(appDirName, devInfo);
-  const conf = devInfo.appConfs[pkgName] || {};
-  const port = conf.port || monoUtil.getPort(devInfo);
+  const port = monoUtil.getPort();
   return parseInt(process.env.PORT, 10) || port || 3000;
 }
 

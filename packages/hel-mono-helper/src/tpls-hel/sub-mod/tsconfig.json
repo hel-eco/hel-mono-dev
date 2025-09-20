@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "module": "Node16",
+    "moduleResolution": "node16"
+  },
+  "include": [
+    "src"
+  ]
+}

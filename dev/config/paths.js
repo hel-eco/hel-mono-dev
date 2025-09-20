@@ -3,15 +3,17 @@
 const path = require('path');
 const fs = require('fs');
 const getPublicUrlOrPath = require('react-dev-utils/getPublicUrlOrPath');
-const devInfo = require('dev-info');
-const { getMonoDevData } = require('../mono-helper');
+const { getMonoDevData, monoUtil } = require('hel-mono-helper');
 
+// const appCwd = monoUtil.getCWD();
+// console.log('+++++++++++     appCwd', appCwd);
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
+
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 // [HEL_MARK] hel-mono dev data
-const { appPublicUrl, resolveMonoRoot, appSrcIndex } = getMonoDevData(devInfo, resolveApp('src'));
+const { appPublicUrl, resolveMonoRoot, appSrcIndex, appHtml } = getMonoDevData(resolveApp('src'));
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -26,7 +28,7 @@ const publicUrlOrPath = appPublicUrl || getPublicUrlOrPath(
 );
 
 // [HEL_MARK] decide build path
-const buildPath = process.env.BUILD_PATH || (process.env.HEL === '1' ? 'hel_dist' : 'build');
+const buildPath = process.env.BUILD_PATH || monoUtil.getBuildDir('build');
 
 const moduleFileExtensions = [
   'web.mjs',
@@ -62,7 +64,7 @@ module.exports = {
   appPath: resolveApp('.'),
   appBuild: resolveApp(buildPath),
   appPublic: resolveMonoRoot('dev/public'),
-  appHtml: resolveMonoRoot('dev/public/index.html'),
+  appHtml,
   appIndexJs: appSrcIndex,
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
@@ -70,7 +72,8 @@ module.exports = {
   appJsConfig: resolveApp('jsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
-  proxySetup: resolveApp('src/setupProxy.js'),
+  // proxySetup: resolveApp('src/setupProxy.js'),
+  proxySetup: resolveMonoRoot('dev/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   appWebpackCache: resolveApp('node_modules/.cache'),
   appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),

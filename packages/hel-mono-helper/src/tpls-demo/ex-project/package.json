@@ -1,0 +1,47 @@
+{
+  "name": "ex-project",
+  "version": "0.0.1",
+  "hel": {
+    "ciCmd": "build:hel",
+    "isEX": true
+  },
+  "main": "./src/index.ts",
+  "private": true,
+  "scripts": {
+    "start": "node ../../dev/root-scripts/executeStart",
+    "start:raw": "node ../../dev/scripts/start",
+    "start:hel": "node ../../dev/scripts/hel/start.js",
+    "build": "node ../../dev/scripts/build.js",
+    "build:hel": "node ../../dev/scripts/hel/build.js",
+    "build:helm": "cross-env-shell \"pnpm run build:hel && pnpm run build:meta\"",
+    "build:meta": "node ../../dev/scripts/hel/meta"
+  },
+  "dependencies": {},
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "volta": {
+    "node": "18.12.1",
+    "pnpm": "8.6.8"
+  }
+}

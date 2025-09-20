@@ -27,7 +27,7 @@ const printHostingInstructions = require('react-dev-utils/printHostingInstructio
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
 // [HEL_MARK]
-const { buildSrvModToHelDist } = require('../mono-helper');
+const { buildSrvModToHelDist, cst } = require('hel-mono-helper');
 
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = FileSizeReporter;
 const useYarn = fs.existsSync(paths.yarnLockFile);
@@ -171,17 +171,18 @@ function build(previousFileSizes) {
         }
       }
 
+      // [HEL_MARK]
+      // 还需要执行 hel 服务端模块构建
+      if (process.env.HEL_BUILD === cst.HEL_MICRO_BUILD_BS) {
+        buildSrvModToHelDist(true);
+        // buildSrvModToHelDist();
+      }
+
       const resolveArgs = {
         stats,
         previousFileSizes,
         warnings: messages.warnings,
       };
-
-      // [HEL_MARK]
-      // 还需要执行 hel 服务端模块构建
-      if (process.env.HEL_BS === '1') {
-        buildSrvModToHelDist();
-      }
 
       if (writeStatsJson) {
         return bfj
@@ -189,6 +190,7 @@ function build(previousFileSizes) {
           .then(() => resolve(resolveArgs))
           .catch(error => reject(new Error(error)));
       }
+
       return resolve(resolveArgs);
     });
   });

@@ -7,5 +7,3 @@
 `root-scripts` 是 hel-mono 根目录 `package.json` 运行各种 npm 命令需要的脚本
 
 `doc` 是记录一些关键问题的文档目录
-
-`mono-helper` 大仓助手，所有核心逻辑都在其中，将来会抽为独立的npm包

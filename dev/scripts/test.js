@@ -37,9 +37,12 @@ function isInMercurialRepository() {
   }
 }
 
+// [HEL_MARK] 设置了 ONCE 表示不进入 watch 模式，一次性运行全部单测
+const runTestsONCE = process.env.ONCE === '1';
+
 // Watch unless on CI or explicitly running all tests
 if (
-  process.env.ALL !== '1' // [Hel] 设置了 all 表示运行全部
+  !runTestsONCE
   && !process.env.CI
   && argv.indexOf('--watchAll') === -1
   && argv.indexOf('--watchAll=false') === -1

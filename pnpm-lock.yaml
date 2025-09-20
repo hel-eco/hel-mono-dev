@@ -136,8 +136,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       hel-dev-utils:
-        specifier: ^5.2.8
-        version: 5.2.8(hel-types@4.3.10)(jsdom@19.0.0)
+        specifier: ^5.3.2
+        version: 5.3.2(hel-types@4.3.10)(jsdom@19.0.0)
       hel-mono-helper:
         specifier: workspace:*
         version: link:packages/hel-mono-helper
@@ -272,6 +272,19 @@ importers:
 
   packages/axios-node: {}
 
+  packages/hel-demo-bslib:
+    dependencies:
+      hel-mono-runtime-helper:
+        specifier: ^1.1.2
+        version: 1.1.2
+    devDependencies:
+      '@babel/preset-env':
+        specifier: ^7.12.11
+        version: 7.26.9(@babel/core@7.22.0)
+      babel-cli:
+        specifier: ^6.26.0
+        version: 6.26.0
+
   packages/hel-demo-lib1:
     devDependencies:
       '@babel/preset-env':
@@ -321,8 +334,8 @@ importers:
   packages/hel-mono-helper:
     dependencies:
       hel-dev-utils:
-        specifier: ^5.2.8
-        version: 5.2.8(hel-types@4.3.10)(jsdom@19.0.0)
+        specifier: ^5.3.2
+        version: 5.3.2(hel-types@4.3.10)(jsdom@19.0.0)
       hel-iso:
         specifier: ^4.4.0
         version: 4.4.0
@@ -514,10 +527,10 @@ importers:
         version: 4.4.0
       hel-lib-proxy:
         specifier: ^4.10.0
-        version: 4.10.0(hel-micro-core@4.13.1)(hel-types@4.3.6)
+        version: 4.10.0(hel-micro-core@4.13.1)(hel-types@4.3.10)
       hel-types:
-        specifier: ^4.3.6
-        version: 4.3.6
+        specifier: ^4.3.10
+        version: 4.3.10
       mono-comps:
         specifier: workspace:*
         version: link:..
@@ -7932,8 +7945,8 @@ packages:
     hasBin: true
     dev: true
 
-  /hel-dev-utils@5.2.8(hel-types@4.3.10)(jsdom@19.0.0):
-    resolution: {integrity: sha512-dJWfFMdZ1tMjwQXa2PBPCbicHeOyE0nqj4AVQgjzXKiXIrBxYkgZ9zCqhRBRk2sshUPwxcRjT8vLvadzf1ihjg==}
+  /hel-dev-utils@5.3.2(hel-types@4.3.10)(jsdom@19.0.0):
+    resolution: {integrity: sha512-8xJ1pMSbibN+rN56h668nbX8n0FfkIY3C5uTGKeyXpO+gw/WcoLkp1P2rXS7AOGISiabTd8jfDQEi7Iu2/sSxw==}
     peerDependencies:
       hel-types: ^4.3.10
       jsdom: ^19.0.0
@@ -7951,14 +7964,14 @@ packages:
     resolution: {integrity: sha512-2P5Y2+dis6cdU4/0psDt4LkFptimX7ug4ECu3HzaqXq++2FONDuy3uwEenCBuLZHjjsO0h8navum2l0ggZH14w==}
     dev: false
 
-  /hel-lib-proxy@4.10.0(hel-micro-core@4.13.1)(hel-types@4.3.6):
+  /hel-lib-proxy@4.10.0(hel-micro-core@4.13.1)(hel-types@4.3.10):
     resolution: {integrity: sha512-c+Nzof93QtBJmYm9B7e9qM4N4Skb70sYpkxua+vakn+4IHRtRLF4/ihW6CGidGBbFO+kMBzonbBpdv5KdPmgaQ==}
     peerDependencies:
       hel-micro-core: ^4.11.0
       hel-types: ^4.3.3
     dependencies:
-      hel-micro-core: 4.13.1(hel-types@4.3.6)
-      hel-types: 4.3.6
+      hel-micro-core: 4.13.1(hel-types@4.3.10)
+      hel-types: 4.3.10
     dev: false
 
   /hel-lib-proxy@4.12.1(hel-micro-core@4.13.1)(hel-types@4.3.10):
@@ -7979,14 +7992,6 @@ packages:
       hel-types: 4.3.10
     dev: false
 
-  /hel-micro-core@4.13.1(hel-types@4.3.6):
-    resolution: {integrity: sha512-Ro3NG5ZcavLynK6flP3D6u+/O/jgXEBlsLe3iVu4zR7jmE+JCGSbpoXChv2vFqXV+Ut84hXitWSHx805m9xzNg==}
-    peerDependencies:
-      hel-types: ^4.3.10
-    dependencies:
-      hel-types: 4.3.6
-    dev: false
-
   /hel-micro@4.14.2(hel-html-parser@1.1.2)(hel-lib-proxy@4.12.1)(hel-micro-core@4.13.1)(hel-types@4.3.10):
     resolution: {integrity: sha512-FiQWBYTY1vriVpd9ObRDXi7oBWT+Pt1C7ERaw3LmqQDgLjQgDrY93xRDzr15nRAA8eSHO1SVS4ziimfizA2DTA==}
     peerDependencies:
@@ -8005,7 +8010,6 @@ packages:
   /hel-mono-runtime-helper@1.1.2:
     resolution: {integrity: sha512-YaiL4mWRqBA1SL8hDOP0mDJbniAAj4FnrEcuqk8Piui82rRut8qpYD4D/+hUVDy03auBY1ApsjyqETHSP7CVQg==}
     dev: false
-    bundledDependencies: []
 
   /hel-mono-types@2.1.0:
     resolution: {integrity: sha512-CMl0JpAvfFDw/82eFyV0HkmTUo5pt7cJvQr9EYz4/57K1l4/bOGFLYFZ5AUVXkwttkegYtIpshYgv+DDdVaVLw==}
@@ -8017,10 +8021,6 @@ packages:
 
   /hel-types@4.3.10:
     resolution: {integrity: sha512-8IN3+Tn4p2Uq0Z3geoE6/Fs9Esqj6+IT8Vsm0v8/PREMwh9yq9WUgYZQUKTJjE87GspG94ioLJdsBvUxU4pJlA==}
-
-  /hel-types@4.3.6:
-    resolution: {integrity: sha512-/8/WNre/vcVp3API1G0hEmNGr+hk552cAznnAkYmsduVle3TKbOd1InT/kVgFZTPpPpeeurKDS5nOLrJDkXn3A==}
-    dev: false
 
   /home-or-tmp@2.0.0:
     resolution: {integrity: sha512-ycURW7oUxE2sNiPVw1HVEFsW+ecOpJ5zaj7eC0RlwhibhRBod20muUN8qu/gzx956YrLolVvs1MTXwKgC2rVEg==}

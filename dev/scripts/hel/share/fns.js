@@ -1,12 +1,14 @@
 const { executeStartDeps, cst, prepareHelEntry, monoUtil } = require('hel-mono-helper');
 const { FN_TRIGGER_NAMES } = require('./consts');
 const extractMeta = require('./extractMeta');
+const { setDeployHost } = require('./setDeployHost');
 
 function callCRAStart() {
   require('../../start');
 }
 
 function callCRABuild() {
+  setDeployHost();
   require('../../build');
 }
 

@@ -7,5 +7,5 @@ export {
  * 对 hel 说你好
  */
 export function hello() {
-  return 'hel hello v1.2.1';
+  return 'hel hello v0.0.2';
 }

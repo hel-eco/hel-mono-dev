@@ -1,8 +1,10 @@
 const path = require('path');
 const { extractHelMetaJson } = require('hel-dev-utils');
 const { getMonoDevData, cst, monoUtil } = require('hel-mono-helper');
+const { setDeployHost } = require('./setDeployHost');
 
 exports.extractMeta = function (isInAppMetaMode) {
+  setDeployHost();
   let buildDir = '';
   const appData = monoUtil.getCWDAppData();
   // 未传递的话则自动推导
@@ -14,7 +16,7 @@ exports.extractMeta = function (isInAppMetaMode) {
 
   const buildDirFullPath = path.join(appData.appDirPath, `./${buildDir}`);
   // 这里设置 HEL_BUILD 是为了让如下命令的 HEL_APP_HOME_PAGE 可生效
-  // HEL_APP_HOME_PAGE='http://gogo.com' pnpm run build:local
+  // HEL_APP_HOME_PAGE='http://gogo.com' pnpm run build:meta
   process.env.HEL_BUILD = cst.HEL_MICRO_BUILD;
   // 这个文件是后台模块默认入口
   const isMainJs = webPath => webPath.endsWith('/srv/index.js');

@@ -1,11 +1,11 @@
 {
-  "name": "hel-demo-lib1",
-  "version": "1.2.1",
-  "description": "hel-mono demo lib 1",
+  "name": "@hel-demo/mono-bslib",
+  "version": "0.0.2",
+  "description": "hel-mono bslib",
   "repository": {
     "type": "git",
     "url": "https://github.com/hel-eco/hel-mono",
-    "directory": "packages/hel-demo-lib1"
+    "directory": "packages/mono-bslib"
   },
   "license": "MIT",
   "main": "./src/index.ts",
@@ -20,6 +20,7 @@
     }
   },
   "publishConfig": {
+    "access": "public",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
@@ -63,7 +64,9 @@
     "test": "node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js",
     "test:once": "cross-env ONCE=1 node ../../dev/scripts/test --config ../../dev/config/jest/jest.config.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "hel-mono-runtime-helper": "^1.1.2"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
     "babel-cli": "^6.26.0"

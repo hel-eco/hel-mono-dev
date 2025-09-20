@@ -34,7 +34,7 @@
   "dependencies": {
     "mono-comps": "workspace:*",
     "hel-lib-proxy": "^4.10.0",
-    "hel-types": "^4.3.6",
+    "hel-types": "^4.3.10",
     "hel-iso": "^4.4.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"

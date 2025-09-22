@@ -1,30 +1,8 @@
 {
+  "deployPath": "https://unpkg.com",
+  "doc": "https://tencent.github.io/hel/docs/hel-mono/basic",
+  "handleDeployPath": true,
   "mods": {
-    "@hel-demo/lib1": {
-      "port": 3100
-    },
-    "@hel-demo/lib2": {
-      "port": 3101
-    },
-    "@helbase/uuid": {
-      "port": 3102
-    },
-    "axios-node": {
-      "port": 3103
-    },
-    "hel-demo-lib1": {
-      "port": 3104
-    },
-    "hel-demo-rc1": {
-      "alias": "@mc",
-      "port": 3105
-    },
-    "hel-hello": {
-      "port": 3106
-    },
-    "hel-mono-helper": {
-      "port": 3107
-    },
     "hub": {
       "alias": "@",
       "port": 3000
@@ -32,21 +10,51 @@
     "hub2": {
       "port": 3001
     },
-    "mono-comps": {
+    "axios-node": {
+      "port": 3104
+    },
+    "@hel-demo/mono-bslib": {
+      "alias": "@h1",
+      "port": 3102
+    },
+    "hel-demo-lib1": {
+      "alias": "@h1",
+      "port": 3105
+    },
+    "hel-demo-rc1": {
+      "alias": "@mc",
+      "port": 3106
+    },
+    "hel-hello": {
+      "port": 3107
+    },
+    "hel-mono-helper": {
       "port": 3108
     },
-    "mono-comps-in-one": {
+    "@helbase/uuid": {
+      "port": 3103
+    },
+    "mono-comps": {
       "port": 3109
+    },
+    "mono-comps-in-one": {
+      "port": 3110
     },
     "mono-comps-in-one-v2": {
       "alias": "@mc",
-      "port": 3110
-    },
-    "mono-comps-in-one-v2-back": {
-      "alias": "@",
       "port": 3111
     },
+    "@hel-demo/lib1": {
+      "port": 3100
+    },
+    "@hel-demo/lib2": {
+      "port": 3101
+    },
     "tsconfig": {
+      "alias": "@",
+      "port": 3113
+    },
+    "mono-comps-in-one-v2-back": {
       "alias": "@",
       "port": 3112
     }

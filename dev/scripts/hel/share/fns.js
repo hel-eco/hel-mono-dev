@@ -1,14 +1,14 @@
 const { executeStartDeps, cst, prepareHelEntry, monoUtil } = require('hel-mono-helper');
 const { FN_TRIGGER_NAMES } = require('./consts');
 const extractMeta = require('./extractMeta');
-const { setDeployHost } = require('./setDeployHost');
+const { setDeployPath } = require('./setDeployPath');
 
 function callCRAStart() {
   require('../../start');
 }
 
 function callCRABuild() {
-  setDeployHost();
+  setDeployPath();
   require('../../build');
 }
 
@@ -146,7 +146,7 @@ const presetFns = {
 };
 
 /**
- * 用户可已多种方式命中（具体查看 FN_TRIGGER_NAMES 映射关系），例如以原始的整体模式方式启动应用
+ * 用户可以多种方式命中（具体查看 FN_TRIGGER_NAMES 映射关系），例如以原始的整体模式方式启动应用
  * pnpm start <dir-or-pkg>:for raw
  * pnpm start <dir-or-pkg>:for startRawLegacyAllInOneMode
  */

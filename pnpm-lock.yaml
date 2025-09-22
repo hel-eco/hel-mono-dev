@@ -136,14 +136,14 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       hel-dev-utils:
-        specifier: ^5.3.2
-        version: 5.3.2(hel-types@4.3.10)(jsdom@19.0.0)
+        specifier: ^5.3.4
+        version: 5.3.4(hel-types@4.3.10)(jsdom@19.0.0)
       hel-mono-helper:
         specifier: workspace:*
         version: link:packages/hel-mono-helper
       hel-mono-types:
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.1.2
+        version: 2.1.2
       html-webpack-plugin:
         specifier: ^5.5.0
         version: 5.5.0(webpack@5.64.4)
@@ -334,8 +334,8 @@ importers:
   packages/hel-mono-helper:
     dependencies:
       hel-dev-utils:
-        specifier: ^5.3.2
-        version: 5.3.2(hel-types@4.3.10)(jsdom@19.0.0)
+        specifier: ^5.3.4
+        version: 5.3.4(hel-types@4.3.10)(jsdom@19.0.0)
       hel-iso:
         specifier: ^4.4.0
         version: 4.4.0
@@ -353,8 +353,8 @@ importers:
         version: 0.9.2
     devDependencies:
       hel-mono-types:
-        specifier: ^2.1.1
-        version: 2.1.1
+        specifier: ^2.1.2
+        version: 2.1.2
 
   packages/hel-mono-helper/src/tpls-demo-mod/lib-ts:
     dependencies:
@@ -389,6 +389,15 @@ importers:
         version: 6.0.1(postcss@8.4.4)
 
   packages/hel-mono-helper/src/tpls-demo/ex-project: {}
+
+  packages/hel-mono-helper/src/tpls-demo/ra-hel-hook:
+    dependencies:
+      '@hel-demo/mono-bslib':
+        specifier: ^0.0.1
+        version: 0.0.1
+      hel-mono-runtime-helper:
+        specifier: ^1.1.2
+        version: 1.1.2
 
   packages/hel-mono-helper/src/tpls-demo/react-app:
     dependencies:
@@ -2485,6 +2494,12 @@ packages:
     resolution: {integrity: sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@hel-demo/mono-bslib@0.0.1:
+    resolution: {integrity: sha512-TZ2Sw+3DctI2JtMDlfIN5sCYrn13Fm98RmCTW7w03fOhpZehRqMAHsDQxPEZTowIvBMBosSvqw7AO5cHsi0gOg==}
+    dependencies:
+      hel-mono-runtime-helper: 1.1.2
+    dev: false
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -7945,8 +7960,8 @@ packages:
     hasBin: true
     dev: true
 
-  /hel-dev-utils@5.3.2(hel-types@4.3.10)(jsdom@19.0.0):
-    resolution: {integrity: sha512-8xJ1pMSbibN+rN56h668nbX8n0FfkIY3C5uTGKeyXpO+gw/WcoLkp1P2rXS7AOGISiabTd8jfDQEi7Iu2/sSxw==}
+  /hel-dev-utils@5.3.4(hel-types@4.3.10)(jsdom@19.0.0):
+    resolution: {integrity: sha512-sO2jKYT3CBI8ikwBvgFDMscZTE8gu8gja9KIqwuwoG18jZ1+phWKqnvzeGdFS2AJIGn5e7cbCHMwjMl7Mlgn2g==}
     peerDependencies:
       hel-types: ^4.3.10
       jsdom: ^19.0.0
@@ -8010,13 +8025,10 @@ packages:
   /hel-mono-runtime-helper@1.1.2:
     resolution: {integrity: sha512-YaiL4mWRqBA1SL8hDOP0mDJbniAAj4FnrEcuqk8Piui82rRut8qpYD4D/+hUVDy03auBY1ApsjyqETHSP7CVQg==}
     dev: false
+    bundledDependencies: []
 
-  /hel-mono-types@2.1.0:
-    resolution: {integrity: sha512-CMl0JpAvfFDw/82eFyV0HkmTUo5pt7cJvQr9EYz4/57K1l4/bOGFLYFZ5AUVXkwttkegYtIpshYgv+DDdVaVLw==}
-    dev: true
-
-  /hel-mono-types@2.1.1:
-    resolution: {integrity: sha512-4MM/Vq1TT3WP3BUOb+m2Tpg0AWXsGIf/bDaiXNNSDKL0X91cGHmaVS0a992fDJYlAvlSZjuYcnwuI6PmMFnfRA==}
+  /hel-mono-types@2.1.2:
+    resolution: {integrity: sha512-cLYLgIsuKmbs/Ljs8KJTkWdEnRKXijvrc8qoLxxEMdJmO0ZgRzwqArinj5M1MWUvH5bMDv6m3SjsdnWvLbzbyA==}
     dev: true
 
   /hel-types@4.3.10:

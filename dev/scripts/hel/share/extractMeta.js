@@ -1,10 +1,10 @@
 const path = require('path');
 const { extractHelMetaJson } = require('hel-dev-utils');
 const { getMonoDevData, cst, monoUtil } = require('hel-mono-helper');
-const { setDeployHost } = require('./setDeployHost');
+const { setDeployPath } = require('./setDeployPath');
 
 exports.extractMeta = function (isInAppMetaMode) {
-  setDeployHost();
+  setDeployPath();
   let buildDir = '';
   const appData = monoUtil.getCWDAppData();
   // 未传递的话则自动推导

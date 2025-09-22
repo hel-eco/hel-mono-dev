@@ -3,7 +3,7 @@ const devUtils = require('hel-dev-utils');
 
 const srcPath = path.join(__dirname, '../');
 
-const VER = '0.6.1';
+const VER = '1.3.4';
 
 const HEL_EXTERNAL_HTML_PAH = path.join(srcPath, './tpls-hel/empty-index.html');
 
@@ -30,6 +30,7 @@ const FORBIDDEN_DIR_NAMES = ['test'];
 
 const ACTION_NAME = {
   build: 'build',
+  buildHel: 'build:hel',
   start: 'start',
   startRaw: 'start:raw',
   startHel: 'start:hel',
@@ -82,6 +83,8 @@ const INNER_ACTION = {
   /**
    * 为代理宿主初始化微模块相关文件，
    * 首次执行 npm start xx-hub:proxy 时需要先执行此命令
+   * proxy 此模式仅用于探索，目前暂不支持了，因它的产物需要二次复制，提高了复杂度，
+   * 同时和现有的 hel-conf 配置运行模式也完全不兼容
    */
   initProxy: '.init-proxy',
   lint: '.lint',

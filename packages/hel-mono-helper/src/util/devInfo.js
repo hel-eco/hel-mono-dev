@@ -1,8 +1,9 @@
 /** @typedef {import('hel-mono-types').IMonoAppConf} IMonoAppConf */
+/** @typedef {import('hel-mono-types').IHelMonoJson} IHelMonoJson */
 /** @typedef {import('../types').IMonoDevInfo} IDevInfo */
 const devUtils = require('hel-dev-utils');
 const { INNER_ACTION, CREATE_SHORT_PARAM_KEY } = require('../consts');
-const { APP_EXTERNALS } = require('../consts/inner');
+const { APP_EXTERNALS, DEPLOY_PATH, HEL_MONO_DOC } = require('../consts/inner');
 const { getDevInfoDirs } = require('./base');
 const { purify } = require('./dict');
 const { getRawMonoJson, getModMonoDataDict } = require('./monoJson');
@@ -19,7 +20,7 @@ function setHandleDevInfo(fn) {
   handleDevInfoFn = fn;
 }
 
-function getAppConfsAndMonoDataDict(monoJson) {
+function getAppConfsAndMonoDataDict(/** @type {IHelMonoJson} */ monoJson) {
   const argv = process.argv;
   const isChangeAliasCmd = argv.includes(INNER_ACTION.change) && argv.includes(CREATE_SHORT_PARAM_KEY.alias);
 
@@ -41,7 +42,7 @@ function getAppConfsAndMonoDataDict(monoJson) {
   // }
 
   repoPkgNames.forEach((pkgName) => {
-    const { port, alias, devHostname } = mods[pkgName] || {};
+    const { port, alias, devHostname, deployPath, handleDeployPath } = mods[pkgName] || {};
     const pkgMonoData = monoDict[pkgName] || {};
     let pkgHel = pkgMonoData.hel || {};
     const repoAlias = pkgMonoData.alias;
@@ -61,6 +62,8 @@ function getAppConfsAndMonoDataDict(monoJson) {
       port,
       alias: targetAlias,
       devHostname: pkgHel.devHostname || devHostname,
+      deployPath,
+      handleDeployPath,
       hel: {
         appGroupName: pkgHel.groupName,
         appNames: pkgHel.names || {},
@@ -111,9 +114,12 @@ function inferDevInfo(allowMonoJsonNull) {
   monoJson = monoJson || { mods: {} };
 
   const {
+    deployPath = DEPLOY_PATH,
+    handleDeployPath = true,
+    doc = HEL_MONO_DOC,
     appsDirs,
     subModDirs,
-    externals = APP_EXTERNALS,
+    appExternals = APP_EXTERNALS,
     devHostname,
     helMicroName,
     helLibProxyName,
@@ -123,11 +129,14 @@ function inferDevInfo(allowMonoJsonNull) {
   const { appConfs, monoDict, prefixedDirDict, dirDict } = getAppConfsAndMonoDataDict(monoJson);
 
   let devInfo = {
+    deployPath,
+    doc,
+    handleDeployPath,
     platform,
     monoDict,
     prefixedDirDict,
     dirDict,
-    appExternals: externals,
+    appExternals,
     appsDirs,
     subModDirs,
     exclude,
@@ -141,6 +150,16 @@ function inferDevInfo(allowMonoJsonNull) {
   }
 
   return devInfo;
+}
+
+/**
+ * 获取可以合并到 monoJson 里的 devInfo 部分对象
+ */
+function getDevInfoRest(/** @type {IDevInfo} */ devInfo) {
+  const keys = ['deployPath', 'doc', 'handleDeployPath'];
+  const rest = {};
+  keys.forEach((key) => (rest[key] = devInfo[key]));
+  return purify(rest);
 }
 
 function toMonoJson(/** @type {IDevInfo} */ devInfo, options = {}) {
@@ -178,7 +197,7 @@ function toMonoJson(/** @type {IDevInfo} */ devInfo, options = {}) {
     newMods[name] = purify({ alias, port: targetPort });
   });
 
-  return { ...rest, mods: newMods };
+  return { ...getDevInfoRest(pureDevInfo), ...rest, mods: newMods };
 }
 
 module.exports = {
